@@ -2,6 +2,6 @@ projectName=drop-machine
 sourceDir=src
 targetDir=target
 mcu=attiny2313
-programmer=arduinoisp
+programmer=usbtiny
 baudrate=19200
 port=usb
