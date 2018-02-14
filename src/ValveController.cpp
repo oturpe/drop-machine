@@ -9,7 +9,9 @@
 
 #include "ValveController.h"
 
-ValveController::ValveController(uint8_t mosfetPin) : pin(mosfetPin) {	
+ValveController::ValveController(uint8_t mosfetPin) : 
+    pin(mosfetPin),
+    openPeriod(0) {
 }
 
 void ValveController::run() {
@@ -27,5 +29,6 @@ void ValveController::run() {
 }
 
 void ValveController::open(uint16_t period) {
+    PORTD |= BV(pin);
     openPeriod = period;
 }

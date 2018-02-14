@@ -64,8 +64,11 @@ int main() {
     while (true) {
 
         if (indicatorCounter == INDICATOR_HALF_PERIOD) {
-            indicatorCounter += 1;
+            indicatorCounter = 0;
             toggleIndicator();
+        }
+        else {
+            indicatorCounter++;
         }
 
         patternFormer.run();

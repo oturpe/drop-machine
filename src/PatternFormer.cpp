@@ -33,7 +33,7 @@ void PatternFormer::run() {
             runEvent(events[index]);
         }
 
-    instant =instants[++index];
+        instant = instants[++index];
     }
 
     uint8_t controllerIndex = 0;
