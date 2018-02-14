@@ -8,10 +8,10 @@
 #define LOOP_DELAY 100
 
 // Definition of indicator pin data direction and data ports and pins
-#define INDICATOR_DATA_DIR DDRB
-#define INDICATOR_DATA_DIR_PIN DDB0
-#define INDICATOR_DATA PORTB
-#define INDICATOR_DATA_PIN PORTB0
+#define INDICATOR_DATA_DIR DDRD
+#define INDICATOR_DATA_DIR_PIN DDD6
+#define INDICATOR_DATA PORTD
+#define INDICATOR_DATA_PIN PORTD6
 
 // Half length of one complete indicator period. In other words, the time the
 // indicator spends on and off. Given in units of LOOP_DELAY.
@@ -40,4 +40,4 @@
 #define VALVE_4_DATA_PIN PORTD4
 
 /// How many events can fit in the total choreography
-#define SEQUENCE_LENGTH 64
+#define SEQUENCE_LENGTH 16
