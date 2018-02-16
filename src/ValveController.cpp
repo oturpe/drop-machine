@@ -4,13 +4,11 @@
 
 #include "config.h"
 
-//#include <avr/io.h>
-//#include <util.delay.h>
-
 #include "ValveController.h"
 
-ValveController::ValveController(uint8_t mosfetPin) : 
-    pin(mosfetPin),
+ValveController::ValveController(Port port, uint8_t pin) : 
+    port(port),
+    pin(pin),
     openPeriod(0) {
 }
 
@@ -24,11 +22,42 @@ void ValveController::run() {
 
     // If the open period concluded right now, close the valve.
     if (!openPeriod) {
-        PORTD &= ~BV(pin);
+        switch (port) {
+        case A:
+            PORTA &= ~BV(pin);
+            break;
+        case B:
+            PORTB &= ~BV(pin);
+            break;
+        case C:
+            // Attiny2313 does not have port C
+            break;
+        case D:
+            PORTD &= ~BV(pin);
+            break;
+        default:
+            break;
+        }
     }
 }
 
 void ValveController::open(uint16_t period) {
-    PORTD |= BV(pin);
+    switch (port) {
+    case A:
+        PORTA |= BV(pin);
+        break;
+    case B:
+        PORTB |= BV(pin);
+        break;
+    case C:
+        // Attiny2313 does not have port C
+        break;
+    case D:
+        PORTD |= BV(pin);
+        break;
+    default:
+        break;
+    }
+
     openPeriod = period;
 }

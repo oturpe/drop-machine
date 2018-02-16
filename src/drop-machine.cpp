@@ -1,8 +1,9 @@
-// Add description here
+// Firmware for a machine producing a pattern of rain drops using solenoid
+// valves.
 //
-// Author: N.N.
-// Email: n.n@example.com
-// Date: 1900-01-01
+// Author: Otto Urpelainen
+// Email: oturpe@iki.fi
+// Date: 2018-02-16
 
 #include "AvrUtils.h"
 
@@ -12,7 +13,6 @@
 #include <util/delay.h>
 
 #include "ValveController.h"
-#include "PatternFormer.h"
 
 uint32_t indicatorCounter = 0;
 
@@ -40,26 +40,13 @@ int main() {
     VALVE_3_DATA_DIR |= BV(VALVE_3_DATA_DIR_PIN);
     VALVE_4_DATA_DIR |= BV(VALVE_4_DATA_DIR_PIN);
 
-    ValveController * controllers[5];
-    ValveController controller0(VALVE_0_DATA);
-    ValveController controller1(VALVE_1_DATA);
-    ValveController controller2(VALVE_2_DATA);
-    ValveController controller3(VALVE_3_DATA);
-    ValveController controller4(VALVE_4_DATA);
-    controllers[0] = &controller0; 
-    controllers[1] = &controller1;
-    controllers[2] = &controller2;
-    controllers[3] = &controller3;
-    controllers[4] = &controller4;
+    ValveController controller0(VALVE_0_DATA_REF, VALVE_0_DATA_PIN);
+    ValveController controller1(VALVE_1_DATA_REF, VALVE_1_DATA_PIN);
+    ValveController controller2(VALVE_2_DATA_REF, VALVE_2_DATA_PIN);
+    ValveController controller3(VALVE_3_DATA_REF, VALVE_3_DATA_PIN);
+    ValveController controller4(VALVE_4_DATA_REF, VALVE_4_DATA_PIN);
 
-    PatternFormer patternFormer(controllers);
-
-    patternFormer.registerEvent(1, {ValveEventType::OPEN, 0, 5});
-    patternFormer.registerEvent(10, {ValveEventType::OPEN, 1, 10});
-    patternFormer.registerEvent(30, {ValveEventType::OPEN, 2, 2});
-    patternFormer.registerEvent(30, {ValveEventType::OPEN, 3, 2});
-    patternFormer.registerEvent(35, {ValveEventType::OPEN, 4, 30});
-    patternFormer.registerEvent(80, {ValveEventType::END, 0, 0});
+    uint32_t patternCounter = 0;
 
     while (true) {
 
@@ -71,7 +58,39 @@ int main() {
             indicatorCounter++;
         }
 
-        patternFormer.run();
+        patternCounter++;
+        if (patternCounter == 1) {
+            controller0.open(DROP_SIZE);
+        }
+        else if (patternCounter == 100) {
+            controller1.open(DROP_SIZE);
+        }
+        else if (patternCounter == 200) {
+            controller3.open(DROP_SIZE);
+        }
+        else if (patternCounter == 300) {
+            controller1.open(DROP_SIZE);
+            controller2.open(DROP_SIZE);
+            controller3.open(DROP_SIZE);
+        }
+        else if (patternCounter == 320) {
+            controller0.open(DROP_SIZE);
+        }
+        else if (patternCounter == 420) {
+            controller0.open(DROP_SIZE);
+            controller1.open(DROP_SIZE);
+            controller2.open(DROP_SIZE);
+            controller3.open(DROP_SIZE);
+        }
+        else if (patternCounter == 620) {
+            patternCounter = 0;
+        }
+
+        controller0.run();
+        controller1.run();
+        controller2.run();
+        controller3.run();
+        controller4.run();
 
         _delay_ms(LOOP_DELAY);
     }
