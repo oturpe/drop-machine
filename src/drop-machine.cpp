@@ -62,27 +62,28 @@ int main() {
         if (patternCounter == 1) {
             controller0.open(DROP_SIZE);
         }
-        else if (patternCounter == 100) {
+        else if (patternCounter == 10*SECOND) {
             controller1.open(DROP_SIZE);
         }
-        else if (patternCounter == 200) {
+        else if (patternCounter == 20*SECOND) {
             controller3.open(DROP_SIZE);
         }
-        else if (patternCounter == 300) {
-            controller1.open(DROP_SIZE);
-            controller2.open(DROP_SIZE);
-            controller3.open(DROP_SIZE);
-        }
-        else if (patternCounter == 320) {
-            controller0.open(DROP_SIZE);
-        }
-        else if (patternCounter == 420) {
-            controller0.open(DROP_SIZE);
+        else if (patternCounter == 30*SECOND) {
             controller1.open(DROP_SIZE);
             controller2.open(DROP_SIZE);
             controller3.open(DROP_SIZE);
         }
-        else if (patternCounter == 620) {
+        else if (patternCounter == 32*SECOND) {
+            controller0.open(DROP_SIZE);
+        }
+        else if (patternCounter == 42*SECOND) {
+            controller0.open(DROP_SIZE);
+            controller1.open(DROP_SIZE);
+            controller2.open(DROP_SIZE);
+            controller3.open(DROP_SIZE);
+        }
+        else if (patternCounter == 62*SECOND) {
+            // End of sequence, start from beginning again
             patternCounter = 0;
         }
 

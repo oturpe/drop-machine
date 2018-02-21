@@ -5,7 +5,10 @@
 #define F_CPU 1000000UL
 
 // Delay between two executions of main loop, given in millisecond.
-#define LOOP_DELAY 100
+#define LOOP_DELAY 20
+
+// One second, given in units of LOOP_DELAY
+#define SECOND 50
 
 // Definition of indicator pin data direction and data ports and pins
 #define INDICATOR_DATA_DIR DDRD
@@ -15,7 +18,7 @@
 
 // Half length of one complete indicator period. In other words, the time the
 // indicator spends on and off. Given in units of LOOP_DELAY.
-#define INDICATOR_HALF_PERIOD 5
+#define INDICATOR_HALF_PERIOD 25
 
 // Definition of valve control pins
 #define VALVE_0_DATA_DIR DDRD
@@ -49,4 +52,4 @@
 #define VALVE_4_DATA_REF D
 
 // Legth of valve opening during a drop. Measured in units of LOOP_DELAY
-#define DROP_SIZE 5
+#define DROP_SIZE 10
