@@ -51,5 +51,5 @@
 #define VALVE_4_DATA_PIN PORTD4
 #define VALVE_4_DATA_REF D
 
-// Legth of valve opening during a drop. Measured in units of LOOP_DELAY
+// Length of valve opening during a drop. Measured in units of LOOP_DELAY
 #define DROP_SIZE 10
