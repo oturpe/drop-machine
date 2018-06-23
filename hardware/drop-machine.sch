@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:drop-machine-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -167,7 +168,7 @@ F 3 "" H 775 1600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L SW_SPST SW?
+L SW_SPST-RESCUE-drop-machine SW?
 U 1 1 5A7ACC71
 P 1600 1500
 F 0 "SW?" H 1600 1625 50  0000 C CNN
