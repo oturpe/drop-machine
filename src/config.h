@@ -7,9 +7,6 @@
 // Delay between two executions of main loop, given in millisecond.
 #define LOOP_DELAY 20
 
-// One second, given in units of LOOP_DELAY
-#define SECOND 50
-
 // Definition of indicator pin data direction and data ports and pins
 #define INDICATOR_DATA_DIR DDRD
 #define INDICATOR_DATA_DIR_PIN DDD6
@@ -52,4 +49,7 @@
 #define VALVE_4_DATA_REF D
 
 // Length of valve opening during a drop. Measured in units of LOOP_DELAY
-#define DROP_SIZE 10
+#define DROP_SIZE 7
+// Multiplier for adjusting the drop sequence speed
+#define DROP_FREQUENCY_MULTIPLIER 50
+
