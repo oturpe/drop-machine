@@ -34,17 +34,24 @@ void toggleIndicator() {
 int main() {
     INDICATOR_DATA_DIR |= BV(INDICATOR_DATA_DIR_PIN);
 
-    VALVE_0_DATA_DIR |= BV(VALVE_0_DATA_DIR_PIN);
+    VALVE_MIDDLE_DATA_DIR |= BV(VALVE_MIDDLE_DATA_DIR_PIN);
     VALVE_1_DATA_DIR |= BV(VALVE_1_DATA_DIR_PIN);
     VALVE_2_DATA_DIR |= BV(VALVE_2_DATA_DIR_PIN);
     VALVE_3_DATA_DIR |= BV(VALVE_3_DATA_DIR_PIN);
     VALVE_4_DATA_DIR |= BV(VALVE_4_DATA_DIR_PIN);
+    VALVE_5_DATA_DIR |= BV(VALVE_5_DATA_DIR_PIN);
+    VALVE_6_DATA_DIR |= BV(VALVE_6_DATA_DIR_PIN);
 
-    ValveController controller0(VALVE_0_DATA_REF, VALVE_0_DATA_PIN);
+    ValveController controllerMiddle(
+        VALVE_MIDDLE_DATA_REF,
+        VALVE_MIDDLE_DATA_PIN
+    );
     ValveController controller1(VALVE_1_DATA_REF, VALVE_1_DATA_PIN);
     ValveController controller2(VALVE_2_DATA_REF, VALVE_2_DATA_PIN);
     ValveController controller3(VALVE_3_DATA_REF, VALVE_3_DATA_PIN);
     ValveController controller4(VALVE_4_DATA_REF, VALVE_4_DATA_PIN);
+    ValveController controller5(VALVE_5_DATA_REF, VALVE_5_DATA_PIN);
+    ValveController controller6(VALVE_6_DATA_REF, VALVE_6_DATA_PIN);
 
     uint32_t patternCounter = 0;
 
@@ -59,39 +66,94 @@ int main() {
         }
 
         patternCounter++;
+
+        // Single drop in the middle
         if (patternCounter == 1) {
-            controller0.open(DROP_SIZE);
+            controllerMiddle.open(DROP_SIZE);
         }
+
+        // Single drop on one vertex
         else if (patternCounter == 10*DROP_FREQUENCY_MULTIPLIER) {
             controller1.open(DROP_SIZE);
         }
+
+        // Single drop on opposite side
         else if (patternCounter == 20*DROP_FREQUENCY_MULTIPLIER) {
-            controller3.open(DROP_SIZE);
+            controller4.open(DROP_SIZE);
         }
+
+        // Triangle shape followed by drop in the middle
         else if (patternCounter == 30*DROP_FREQUENCY_MULTIPLIER) {
             controller1.open(DROP_SIZE);
-            controller2.open(DROP_SIZE);
             controller3.open(DROP_SIZE);
+            controller5.open(DROP_SIZE);
         }
         else if (patternCounter == 32*DROP_FREQUENCY_MULTIPLIER) {
-            controller0.open(DROP_SIZE);
+            controllerMiddle.open(DROP_SIZE);
         }
+
+        // Triangle and middle
         else if (patternCounter == 42*DROP_FREQUENCY_MULTIPLIER) {
-            controller0.open(DROP_SIZE);
+            controller2.open(DROP_SIZE);
+            controller4.open(DROP_SIZE);
+            controller6.open(DROP_SIZE);
+            controllerMiddle.open(DROP_SIZE);
+        }
+
+        // Hexagon
+        else if (patternCounter == 52*DROP_FREQUENCY_MULTIPLIER) {
             controller1.open(DROP_SIZE);
             controller2.open(DROP_SIZE);
             controller3.open(DROP_SIZE);
+            controller4.open(DROP_SIZE);
+            controller5.open(DROP_SIZE);
+            controller6.open(DROP_SIZE);
         }
+
+        // Triangle followed by the other triangle
         else if (patternCounter == 62*DROP_FREQUENCY_MULTIPLIER) {
-            // End of sequence, start from beginning again
+            controller2.open(DROP_SIZE);
+            controller4.open(DROP_SIZE);
+            controller6.open(DROP_SIZE);
+        }
+        else if (patternCounter == 63*DROP_FREQUENCY_MULTIPLIER) {
+            controller1.open(DROP_SIZE);
+            controller3.open(DROP_SIZE);
+            controller5.open(DROP_SIZE);
+        }
+
+        // Spiral hexagon
+        else if (patternCounter == 73*DROP_FREQUENCY_MULTIPLIER) {
+            controller1.open(DROP_SIZE);
+        }
+        else if (patternCounter == 74*DROP_FREQUENCY_MULTIPLIER) {
+            controller2.open(DROP_SIZE);
+        }
+        else if (patternCounter == 75*DROP_FREQUENCY_MULTIPLIER) {
+            controller3.open(DROP_SIZE);
+        }
+        else if (patternCounter == 76*DROP_FREQUENCY_MULTIPLIER) {
+            controller4.open(DROP_SIZE);
+        }
+        else if (patternCounter == 77*DROP_FREQUENCY_MULTIPLIER) {
+            controller5.open(DROP_SIZE);
+        }
+        else if (patternCounter == 78*DROP_FREQUENCY_MULTIPLIER) {
+            controller6.open(DROP_SIZE);
+        }
+
+        // End of sequence, start from beginning again
+        else if (patternCounter == 88*DROP_FREQUENCY_MULTIPLIER) {
             patternCounter = 0;
         }
 
-        controller0.run();
+        controllerMiddle.run();
         controller1.run();
         controller2.run();
         controller3.run();
         controller4.run();
+        controller5.run();
+        controller6.run();
 
         _delay_ms(LOOP_DELAY);
     }
