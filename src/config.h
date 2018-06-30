@@ -7,6 +7,11 @@
 // Delay between two executions of main loop, given in millisecond.
 #define LOOP_DELAY 20
 
+// One secind, given in units of LOOP_DELAY
+#define SECOND  50
+// One secind, given in units of LOOP_DELAY
+#define DECI_SECOND  5
+
 // Definition of indicator pin data direction and data ports and pins
 #define INDICATOR_DATA_DIR DDRD
 #define INDICATOR_DATA_DIR_PIN DDD6

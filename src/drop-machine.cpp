@@ -73,27 +73,27 @@ int main() {
         }
 
         // Single drop on one vertex
-        else if (patternCounter == 10*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 10*SECOND) {
             controller1.open(DROP_SIZE);
         }
 
         // Single drop on opposite side
-        else if (patternCounter == 20*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 20*SECOND) {
             controller4.open(DROP_SIZE);
         }
 
         // Triangle shape followed by drop in the middle
-        else if (patternCounter == 30*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 30*SECOND) {
             controller1.open(DROP_SIZE);
             controller3.open(DROP_SIZE);
             controller5.open(DROP_SIZE);
         }
-        else if (patternCounter == 32*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 32*SECOND) {
             controllerMiddle.open(DROP_SIZE);
         }
 
         // Triangle and middle
-        else if (patternCounter == 42*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 42*SECOND) {
             controller2.open(DROP_SIZE);
             controller4.open(DROP_SIZE);
             controller6.open(DROP_SIZE);
@@ -101,7 +101,7 @@ int main() {
         }
 
         // Hexagon
-        else if (patternCounter == 52*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 52*SECOND) {
             controller1.open(DROP_SIZE);
             controller2.open(DROP_SIZE);
             controller3.open(DROP_SIZE);
@@ -111,39 +111,39 @@ int main() {
         }
 
         // Triangle followed by the other triangle
-        else if (patternCounter == 62*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 62*SECOND) {
             controller2.open(DROP_SIZE);
             controller4.open(DROP_SIZE);
             controller6.open(DROP_SIZE);
         }
-        else if (patternCounter == 63*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 62*SECOND + 5*DECI_SECOND) {
             controller1.open(DROP_SIZE);
             controller3.open(DROP_SIZE);
             controller5.open(DROP_SIZE);
         }
 
         // Spiral hexagon
-        else if (patternCounter == 73*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 73*SECOND) {
             controller1.open(DROP_SIZE);
         }
-        else if (patternCounter == 74*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 73*SECOND + 2*DECI_SECOND) {
             controller2.open(DROP_SIZE);
         }
-        else if (patternCounter == 75*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 73*SECOND + 4*DECI_SECOND) {
             controller3.open(DROP_SIZE);
         }
-        else if (patternCounter == 76*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 73*SECOND + 6*DECI_SECOND) {
             controller4.open(DROP_SIZE);
         }
-        else if (patternCounter == 77*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 73*SECOND + 8*DECI_SECOND) {
             controller5.open(DROP_SIZE);
         }
-        else if (patternCounter == 78*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 74*SECOND) {
             controller6.open(DROP_SIZE);
         }
 
         // End of sequence, start from beginning again
-        else if (patternCounter == 88*DROP_FREQUENCY_MULTIPLIER) {
+        else if (patternCounter == 84*SECOND) {
             patternCounter = 0;
         }
 
