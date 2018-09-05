@@ -1,3 +1,8 @@
+This repository contains plans for a prototype version of the drop machine. See
+repository [drop-machine-2][drop-machine-2] for a more recent revision.
+
+[drop-machine-2]: https://github.com/oturpe/drop-machine-2
+
 ## Directory structure
 
 1.  *hardware* contains schematic and printed circuit board layout of
