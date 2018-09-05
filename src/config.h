@@ -66,7 +66,7 @@
 #define VALVE_6_DATA_REF D
 
 // Length of valve opening during a drop. Measured in units of LOOP_DELAY
-#define DROP_SIZE 7
+#define DROP_SIZE 4
 // Multiplier for adjusting the drop sequence speed
 #define DROP_FREQUENCY_MULTIPLIER 50
 
